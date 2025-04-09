@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import { gemini15Flash, googleAI } from '@genkit-ai/googleai';
 import { genkit, z } from 'genkit';
 
+const apiKey = process.env.GOOGLE_GENAI_API_KEY;
 const ai = genkit({
-  plugins: [googleAI()],
+  plugins: [googleAI({ apiKey })],
 });
 
 const prompt = ai.definePrompt({
